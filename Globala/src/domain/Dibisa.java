@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
-
+//comentario gehitu da
 
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
