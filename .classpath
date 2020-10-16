@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="Globala/src"/>
-	<classpathentry kind="lib" path="C:/stuff/EHU/2.maila/SI/2_Marroia/lib/objectdb.jar"/>
+	<classpathentry kind="lib" path="Globala/objectdb.jar"/>
 	<classpathentry kind="output" path="Globala/bin"/>
 </classpath>
