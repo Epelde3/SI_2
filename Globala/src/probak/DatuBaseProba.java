@@ -10,8 +10,7 @@ public class DatuBaseProba {
 	
 	public static void main(String[]args) {
 		DataAccess db=new DataAccess();
-		db.datuakSartu();
-		
+		db.initializeDB();		
 		
 	}
 	

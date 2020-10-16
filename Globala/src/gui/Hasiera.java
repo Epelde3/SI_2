@@ -8,9 +8,12 @@ import javax.swing.border.EmptyBorder;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import dataAccess.DataAccess;
 import domain.Kontua;
 import domain.Sukurtsala;
 import service.BLFacade;
+import service.BLFacadeImplementation;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -90,11 +93,14 @@ public class Hasiera extends JFrame {
 		
 		//Negozio logika lortu web zerbitzuetatik
 		try {
-			URL url=new URL("http://localhost:9999/ws?wsdl");
-            QName qname=new QName("http://service/","BLFacadeImplementationService");
-            Service service=Service.create(url,qname);
-	         wsl=service.getPort(BLFacade.class);
-		} catch (MalformedURLException e1) {
+//			URL url=new URL("http://localhost:9999/ws?wsdl");
+//            QName qname=new QName("http://service/","BLFacadeImplementationService");
+//            Service service=Service.create(url,qname);
+//	         wsl=service.getPort(BLFacade.class);
+			
+			DataAccess da=new DataAccess(true);
+			wsl=new BLFacadeImplementation(da);
+		} catch (Exception e1) {
 
 			e1.printStackTrace();
 		}

@@ -9,7 +9,7 @@ public class DatuBaseanDatuakSartu {
 		DataAccess db = new DataAccess();
 		
 		
-		db.datuakSartu();;
+		db.initializeDB();
 		
 	}
 }

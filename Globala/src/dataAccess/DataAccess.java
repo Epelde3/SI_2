@@ -19,7 +19,25 @@ public class DataAccess {
 	private EntityManagerFactory emf;
 	private String fileName="dibisak.odb";
 	
+	
+	
 	public  DataAccess() {
+		new DataAccess(false);
+	}
+	
+	public DataAccess(boolean initialize) {
+		open(initialize);
+	}
+	
+	
+	
+	public void open(boolean initializemode) {//true bada datu basea hustu eta initialize deb exekutatuko da.
+		
+		
+		if(initializemode) {
+			fileName=fileName+";drop";
+			System.out.println("Datui basea ezabatu da.");
+		}
 		emf=Persistence.createEntityManagerFactory("objectdb:"+fileName);
 		db=emf.createEntityManager();
 		System.out.println("Datu basea ireki da");
@@ -100,32 +118,32 @@ public class DataAccess {
 	}
 	
 	//DAtuak sartzeko
-	public void datuakSartu() {
+	public void initializeDB() {
 		try {
-//			Dibisa dolar=new Dibisa("Dolar", 0.95);
-//			Dibisa Libra =new Dibisa("Libra",1.25);
+			Dibisa dolar=new Dibisa("Dolar", 0.95);
+			Dibisa Libra =new Dibisa("Libra",1.25);
 			Dibisa Yen=new Dibisa("Yen",2);
-//			SukurtsalDibisa dolarSuk1= new SukurtsalDibisa(dolar, 100000, 0.5,"Dolar");
+			SukurtsalDibisa dolarSuk1= new SukurtsalDibisa(dolar, 100000, 0.5,"Dolar");
 			db.getTransaction().begin();
 			
 			
 			
-//			SukurtsalDibisa libraSuk2 = new SukurtsalDibisa(Libra, 5084, 0.23,"Libra");
+			SukurtsalDibisa libraSuk2 = new SukurtsalDibisa(Libra, 5084, 0.23,"Libra");
 			SukurtsalDibisa libraSuk3 = new SukurtsalDibisa(Yen, 6000, 0.6,"Yen");
 			ArrayList<SukurtsalDibisa> dibisak=new ArrayList<SukurtsalDibisa>();
-//			dibisak.add(libraSuk2);
-//			dibisak.add(dolarSuk1);
+			dibisak.add(libraSuk2);
+			dibisak.add(dolarSuk1);
 			dibisak.add(libraSuk3);
-//			ArrayList<Kontua> bezeroak= new ArrayList<Kontua>();
-//			bezeroak.add(db.find(Kontua.class, 0));
+			ArrayList<Kontua> bezeroak= new ArrayList<Kontua>();
+			bezeroak.add(db.find(Kontua.class, 0));
 			Sukurtsala suk1=new Sukurtsala(dibisak, "Bilbo");
 			
-//			db.persist(dolar);
-//			db.persist(Libra);
-//			db.persist(Yen);
-//			db.persist(dolarSuk1);
-//			db.persist(libraSuk2);
-//			db.persist(libraSuk3);
+			db.persist(dolar);
+			db.persist(Libra);
+			db.persist(Yen);
+			db.persist(dolarSuk1);
+			db.persist(libraSuk2);
+			db.persist(libraSuk3);
 			db.persist(suk1);
 			
 			

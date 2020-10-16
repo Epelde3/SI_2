@@ -13,32 +13,49 @@ import domain.Sukurtsala;
 
 @WebService(endpointInterface = "service.BLFacade")
 public class BLFacadeImplementation implements BLFacade {
+	
+	DataAccess dbManager;
+	
+	public BLFacadeImplementation(DataAccess da) {
+		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
+//				ConfigXML c=ConfigXML.getInstance();
+//				if (c.getDataBaseOpenMode().equals("initialize")) {
+				da.open(true);
+				da.initializeDB();
+				da.close();
+				dbManager=da;
+	
+}
+	
 
 	@WebMethod // Id hori duen bezeroa itzultzen du. Exception bat: id hori duen bezerorik ez
 				// da existitzen.
 	public Kontua getBezero(int id) throws NullPointerException {
-		DataAccess db = new DataAccess();
-		Kontua a = db.getBezeroa(id);
-		db.close();
+		dbManager.open(false);
+		Kontua a = dbManager.getBezeroa(id);
+		dbManager.close();
 		return a;
 
 	}
 
+
+	
+
 	@WebMethod // Bezeroak emandako dibisak gehitzen ditu dagokion dibisan.
 	public void dibisakEguneratu(Dibisa dibisa, float kopurua, String helbidea) {
 
-		DataAccess db = new DataAccess();
-		db.dibisakGehitu(dibisa, kopurua, helbidea);
+		dbManager.open(false);
+		dbManager.dibisakGehitu(dibisa, kopurua, helbidea);
 
-		db.close();
+		dbManager.close();
 
 	}
 
 	@WebMethod
 	public int eragiketaKodLortu() {
-		DataAccess db = new DataAccess();
-		int luzeera = db.ergiketaKodLortu().size();
-		db.close();
+		dbManager.open(false);
+		int luzeera = dbManager.ergiketaKodLortu().size();
+		dbManager.close();
 		return luzeera + 1;
 	}
 
@@ -71,9 +88,9 @@ public class BLFacadeImplementation implements BLFacade {
 
 	@WebMethod
 	public Sukurtsala getSukurtsala(String helbidea) {
-		DataAccess db = new DataAccess();
-		Sukurtsala a = db.getSukurtsala(helbidea);
-		db.close();
+		dbManager.open(false);
+		Sukurtsala a = dbManager.getSukurtsala(helbidea);
+		dbManager.close();
 		return a;
 	}
 
@@ -86,17 +103,17 @@ public class BLFacadeImplementation implements BLFacade {
 
 	@WebMethod
 	public List<Sukurtsala> getSukurtsalak() {
-		DataAccess db = new DataAccess();
-		List<Sukurtsala> a = db.sukurtsalakLortu();
-		db.close();
+		dbManager.open(false);
+		List<Sukurtsala> a = dbManager.sukurtsalakLortu();
+		dbManager.close();
 		return a;
 
 	}
 
 	@WebMethod
 	public float diruaGehitu(int id, Dibisa dibisa, float kop) {
-		DataAccess db = new DataAccess();
-		db.diruaGehitu(id, (float) (kop * dibisa.getTrukeBalioa()));
+	dbManager.open(false);
+		dbManager.diruaGehitu(id, (float) (kop * dibisa.getTrukeBalioa()));
 		return (float) (kop * dibisa.getTrukeBalioa());
 
 	}
