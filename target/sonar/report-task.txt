@@ -3,5 +3,5 @@ projectKey=ProbaProiektu
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.13455
 dashboardUrl=https://sonarcloud.io/dashboard?id=ProbaProiektu
-ceTaskId=AXU4izuBW6RL6b7cYauX
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXU4izuBW6RL6b7cYauX
+ceTaskId=AXU4noG3DAZDF0eUTvxP
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXU4noG3DAZDF0eUTvxP
