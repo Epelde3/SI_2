@@ -1,7 +1,7 @@
 organization=epelde3
-projectKey=ProbaProiektu
+projectKey=Bets:ProbaProiektu
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.13455
-dashboardUrl=https://sonarcloud.io/dashboard?id=ProbaProiektu
-ceTaskId=AXU4noG3DAZDF0eUTvxP
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXU4noG3DAZDF0eUTvxP
+dashboardUrl=https://sonarcloud.io/dashboard?id=Bets%3AProbaProiektu
+ceTaskId=AXU4tTF-h6o1O3pu_BJI
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXU4tTF-h6o1O3pu_BJI
