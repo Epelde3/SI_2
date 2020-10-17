@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="Globala/src"/>
-	<classpathentry kind="lib" path="Globala/objectdb.jar"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="Globala/mockito-core-3.0.0.jar"/>
-	<classpathentry kind="lib" path="Globala/byte-buddy-1.10.1.jar"/>
-	<classpathentry kind="lib" path="Globala/byte-buddy-agent-1.10.1.jar"/>
-	<classpathentry kind="lib" path="Globala/objenesis-tck-3.0.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_221"/>
+	<classpathentry kind="lib" path="byte-buddy-1.10.1.jar"/>
+	<classpathentry kind="lib" path="byte-buddy-agent-1.10.1.jar"/>
+	<classpathentry kind="lib" path="mockito-core-3.0.0.jar"/>
+	<classpathentry kind="lib" path="objectdb.jar"/>
+	<classpathentry kind="lib" path="objenesis-tck-3.0.1.jar"/>
 	<classpathentry kind="output" path="Globala/bin"/>
 </classpath>
