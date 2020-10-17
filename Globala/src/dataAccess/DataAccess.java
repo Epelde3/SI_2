@@ -14,7 +14,7 @@ import domain.Kontua;
 import domain.SukurtsalDibisa;
 import domain.Sukurtsala;
 
-public class DataAccess {
+public class DataAccess implements DataAccessInterface {
 	private EntityManager db;
 	private EntityManagerFactory emf;
 	private String fileName="dibisak.odb";
@@ -31,6 +31,10 @@ public class DataAccess {
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#open(boolean)
+	 */
+	@Override
 	public void open(boolean initializemode) {//true bada datu basea hustu eta initialize deb exekutatuko da.
 		
 		
@@ -43,23 +47,39 @@ public class DataAccess {
 		System.out.println("Datu basea ireki da");
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#close()
+	 */
+	@Override
 	public void close() {
 		db.close();
 		System.out.println("Datu basea itxi egin da.");
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#getBezeroa(int)
+	 */
+	@Override
 	public Kontua getBezeroa(int id) throws NullPointerException{
 		
 		return db.find(Kontua.class, id);
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#getSukurtsalekoDibisak(java.lang.String)
+	 */
+	@Override
 	public ArrayList<Dibisa> getSukurtsalekoDibisak(String helbidea) {
 		TypedQuery<Dibisa> query=db.createQuery("SELECT p FROM Dibisa p",Dibisa.class);
 		ArrayList<Dibisa> lista=(ArrayList<Dibisa>) query.getResultList();//Iuel castingek problemak emangoittu
 		return lista;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#erosketaEtaSaltzeaGauzatu(int, float)
+	 */
+	@Override
 	public void erosketaEtaSaltzeaGauzatu(int id, float prezioa) {
 		db.getTransaction().begin();
 		Kontua oraingoa=db.find(Kontua.class, id);
@@ -68,6 +88,10 @@ public class DataAccess {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#dibisakGehitu(domain.Dibisa, float, java.lang.String)
+	 */
+	@Override
 	public void dibisakGehitu(Dibisa dibisa,float kopurua,String helbidea) {
 		Sukurtsala lag=db.find(Sukurtsala.class,helbidea);
 		System.out.println(helbidea);
@@ -77,6 +101,10 @@ public class DataAccess {
 		System.out.println(helbidea);
 	}
 	//Kontuari eragiketa gehitzen dio eta kontuko dirua eguneratzen du.
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#eragiketaGehitu(domain.Eragiketa, int, double)
+	 */
+	@Override
 	public void eragiketaGehitu(Eragiketa erag,int id,double prezioa) {
 		Kontua lag=db.find(Kontua.class, id);
 		db.getTransaction().begin();
@@ -87,12 +115,20 @@ public class DataAccess {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#ergiketaKodLortu()
+	 */
+	@Override
 	public List<Eragiketa> ergiketaKodLortu() {
 		TypedQuery<Eragiketa> query=db.createQuery("SELECT e FROM Eragiketa e",Eragiketa.class);
 		List<Eragiketa> a=query.getResultList();
 		return a;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#sukurtsalakLortu()
+	 */
+	@Override
 	public List<Sukurtsala> sukurtsalakLortu(){
 		TypedQuery<Sukurtsala> query=db.createQuery("SELECT s FROM Sukurtsala s",Sukurtsala.class);
 		List<Sukurtsala> a=query.getResultList();
@@ -100,6 +136,10 @@ public class DataAccess {
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#diruaGehitu(int, float)
+	 */
+	@Override
 	public void diruaGehitu(int id, float kop) {
 		db.getTransaction().begin();
 		Kontua lag=db.find(Kontua.class, id);
@@ -109,6 +149,10 @@ public class DataAccess {
 	}
 	
 	//Probak egiteko
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#proba()
+	 */
+	@Override
 	public void proba() {
 		db.getTransaction().begin();
 		Kontua bezero=new Kontua("Melvin", 10 , 0);
@@ -118,6 +162,10 @@ public class DataAccess {
 	}
 	
 	//DAtuak sartzeko
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#initializeDB()
+	 */
+	@Override
 	public void initializeDB() {
 		try {
 			Dibisa dolar=new Dibisa("Dolar", 0.95);
@@ -154,6 +202,10 @@ public class DataAccess {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see dataAccess.DataAccessInterface#getSukurtsala(java.lang.String)
+	 */
+	@Override
 	public Sukurtsala getSukurtsala(String helbidea) {
 		return db.find(Sukurtsala.class, helbidea);
 	}

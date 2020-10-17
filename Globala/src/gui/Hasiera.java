@@ -9,6 +9,7 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import dataAccess.DataAccess;
+import dataAccess.DataAccessInterface;
 import domain.Kontua;
 import domain.Sukurtsala;
 import service.BLFacade;
@@ -98,7 +99,7 @@ public class Hasiera extends JFrame {
 //            Service service=Service.create(url,qname);
 //	         wsl=service.getPort(BLFacade.class);
 			
-			DataAccess da=new DataAccess(true);
+			DataAccessInterface da=new DataAccess(true);
 			wsl=new BLFacadeImplementation(da);
 		} catch (Exception e1) {
 

@@ -1,12 +1,13 @@
 package probak;
 
 import dataAccess.DataAccess;
+import dataAccess.DataAccessInterface;
 
 public class DatuBaseanDatuakSartu {
 
 	
 	public static void main(String[]args) {
-		DataAccess db = new DataAccess();
+		DataAccessInterface db = new DataAccess();
 		
 		
 		db.initializeDB();

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import dataAccess.DataAccess;
+import dataAccess.DataAccessInterface;
 import domain.Dibisa;
 import domain.Eragiketa;
 import domain.Kontua;
@@ -14,9 +15,9 @@ import domain.Sukurtsala;
 @WebService(endpointInterface = "service.BLFacade")
 public class BLFacadeImplementation implements BLFacade {
 	
-	DataAccess dbManager;
+	DataAccessInterface dbManager;
 	
-	public BLFacadeImplementation(DataAccess da) {
+	public BLFacadeImplementation(DataAccessInterface da) {
 		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
 //				ConfigXML c=ConfigXML.getInstance();
 //				if (c.getDataBaseOpenMode().equals("initialize")) {
@@ -66,7 +67,7 @@ public class BLFacadeImplementation implements BLFacade {
 			dibisakEguneratu(dibisa, -kop, helbidea);
 			// Bezeroari eragiketa sortu
 			Eragiketa erag = new Eragiketa(mota, deskripzioa, eragiketaKodLortu());
-			DataAccess db = new DataAccess();
+			DataAccessInterface db = new DataAccess();
 			db.eragiketaGehitu(erag, id, prezioa);
 			db.close();
 		} else if (mota.equals("Salketa")) {
@@ -74,7 +75,7 @@ public class BLFacadeImplementation implements BLFacade {
 			System.out.println("asfd");
 			dibisakEguneratu(dibisa, kop, helbidea);
 			Eragiketa erag = new Eragiketa(mota, deskripzioa, eragiketaKodLortu());
-			DataAccess db = new DataAccess();
+			DataAccessInterface db = new DataAccess();
 
 			diruaGehitu(id, dibisa, kop);
 			db.eragiketaGehitu(erag, id, 0);
