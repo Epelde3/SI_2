@@ -25,7 +25,7 @@ public class Testeo {
 
 	@Test
 	public void test() {
-	
+		//Mocito lortu behar da
 		//Mockito.doReturn(null).when(dao).getBezeroa(Mockito.anyInt());
 		//assertTrue(dao.getBezeroa(0)==null);
 		fail();
