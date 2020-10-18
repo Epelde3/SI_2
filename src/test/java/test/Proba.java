@@ -1,4 +1,4 @@
-package testak;
+package test;
 
 public class Proba {
 	public static void main(String[]args) {
