@@ -34,10 +34,10 @@ public class DataAccess implements DataAccessInterface {
 	public void open(boolean initializemode) {//true bada datu basea hustu eta initialize deb exekutatuko da.
 		
 		
-		if(initializemode) {
-			fileName=fileName+";drop";
-			System.out.println("Datui basea ezabatu da.");
-		}
+//		if(initializemode) {
+//			fileName=fileName+";drop";
+//			System.out.println("Datui basea ezabatu da.");
+//		} 
 		emf=Persistence.createEntityManagerFactory("objectdb:"+fileName);
 		db=emf.createEntityManager();
 		System.out.println("Datu basea ireki da");
@@ -90,11 +90,9 @@ public class DataAccess implements DataAccessInterface {
 	@Override
 	public void dibisakGehitu(Dibisa dibisa,float kopurua,String helbidea) {
 		Sukurtsala lag=db.find(Sukurtsala.class,helbidea);
-		System.out.println(helbidea);
 		db.getTransaction().begin();
 		lag.sukurtsalDibisaTopatu(dibisa.getIzena()).setKopurua(lag.sukurtsalDibisaTopatu(dibisa.getIzena()).getKopurua()+kopurua);
 		db.getTransaction().commit();
-		System.out.println(helbidea);
 	}
 	//Kontuari eragiketa gehitzen dio eta kontuko dirua eguneratzen du.
 	/* (non-Javadoc)
@@ -102,7 +100,8 @@ public class DataAccess implements DataAccessInterface {
 	 */
 	@Override
 	public void eragiketaGehitu(Eragiketa erag,int id,double prezioa) {
-		Kontua lag=db.find(Kontua.class, id);
+		open(false);
+		Kontua lag=getBezeroa(id);
 		db.getTransaction().begin();
 		lag.eragiketaGehitu(erag);
 		lag.setDiruKopuru(lag.getDiruKopuru()-prezioa);

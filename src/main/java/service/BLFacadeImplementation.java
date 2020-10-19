@@ -11,20 +11,19 @@ import domain.*;
 
 @WebService(endpointInterface = "service.BLFacade")
 public class BLFacadeImplementation implements BLFacade {
-	
-	DataAccessInterface dbManager;
-	
-	public BLFacadeImplementation(DataAccessInterface da) {
+
+	DataAccess dbManager;
+
+	public BLFacadeImplementation(DataAccess da) {
 		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
-//				ConfigXML c=ConfigXML.getInstance();
-//				if (c.getDataBaseOpenMode().equals("initialize")) {
-				da.open(true);
-				da.initializeDB();
-				da.close();
-				dbManager=da;
-	
-}
-	
+		// ConfigXML c=ConfigXML.getInstance();
+		// if (c.getDataBaseOpenMode().equals("initialize")) {
+		da.open(false);
+		// da.initializeDB();
+		da.close();
+		dbManager = da;
+
+	}
 
 	@WebMethod // Id hori duen bezeroa itzultzen du. Exception bat: id hori duen bezerorik ez
 				// da existitzen.
@@ -35,9 +34,6 @@ public class BLFacadeImplementation implements BLFacade {
 		return a;
 
 	}
-
-
-	
 
 	@WebMethod // Bezeroak emandako dibisak gehitzen ditu dagokion dibisan.
 	public void dibisakEguneratu(Dibisa dibisa, float kopurua, String helbidea) {
@@ -59,27 +55,27 @@ public class BLFacadeImplementation implements BLFacade {
 
 	@WebMethod // sukurtsaleko dibisak eguneratzen ditu. Eta bezeroari eragiketa gehitzen dio.
 	public void erosketaGauzatu(int id, Dibisa dibisa, int kop, double prezioa, String deskripzioa, String mota,
-			String helbidea) {
+			String helbidea) throws Exception {
 		if (mota.equals("Erosi")) {
 			dibisakEguneratu(dibisa, -kop, helbidea);
 			// Bezeroari eragiketa sortu
 			Eragiketa erag = new Eragiketa(mota, deskripzioa, eragiketaKodLortu());
-			DataAccessInterface db = new DataAccess();
-			db.eragiketaGehitu(erag, id, prezioa);
-			db.close();
+			dbManager.open(false);
+
+			dbManager.eragiketaGehitu(erag, id, prezioa);
+			dbManager.close();
 		} else if (mota.equals("Salketa")) {
 			// dibisak gehitu
-			System.out.println("asfd");
 			dibisakEguneratu(dibisa, kop, helbidea);
 			Eragiketa erag = new Eragiketa(mota, deskripzioa, eragiketaKodLortu());
-			DataAccessInterface db = new DataAccess();
+			DataAccess db = new DataAccess();
 
 			diruaGehitu(id, dibisa, kop);
 			db.eragiketaGehitu(erag, id, 0);
 			db.close();
 
 		} else {
-			System.out.println("Error");
+			throw new Exception("Eragiketa okerra");
 		}
 
 	}
@@ -110,7 +106,7 @@ public class BLFacadeImplementation implements BLFacade {
 
 	@WebMethod
 	public float diruaGehitu(int id, Dibisa dibisa, float kop) {
-	dbManager.open(false);
+		dbManager.open(false);
 		dbManager.diruaGehitu(id, (float) (kop * dibisa.getTrukeBalioa()));
 		return (float) (kop * dibisa.getTrukeBalioa());
 

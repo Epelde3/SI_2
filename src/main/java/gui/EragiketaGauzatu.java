@@ -127,9 +127,14 @@ public class EragiketaGauzatu extends JFrame implements Serializable {
 			public void mouseClicked(MouseEvent e) {
 				// BLFacade bl=new BLFacadeImplementation();
 				if (eragiketaGauzatu.isEnabled()) {
-					wsl.erosketaGauzatu(localBezero.getId(), localDibisa.getDibisa(), kopurua,
-							kopurua * localDibisa.getDibisa().getTrukeBalioa(), eragiketaDeskripzioa.getText(),
-							eragiketaMota, localSuk.getHelbidea());
+					try {
+						wsl.erosketaGauzatu(localBezero.getId(), localDibisa.getDibisa(), kopurua,
+								kopurua * localDibisa.getDibisa().getTrukeBalioa(), eragiketaDeskripzioa.getText(),
+								eragiketaMota, localSuk.getHelbidea());
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
 					// bl.erosketaGauzatu(localBezero.getId(), localDibisa.getDibisa(), kopurua,
 					// prezioa,

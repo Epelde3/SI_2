@@ -97,7 +97,7 @@ public class Hasiera extends JFrame {
 //            Service service=Service.create(url,qname);
 //	         wsl=service.getPort(BLFacade.class);
 			
-			DataAccessInterface da=new DataAccess(true);
+			DataAccess da=new DataAccess(true);
 			wsl=new BLFacadeImplementation(da);
 		} catch (Exception e1) {
 

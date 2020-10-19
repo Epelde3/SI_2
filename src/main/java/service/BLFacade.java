@@ -19,7 +19,7 @@ public interface BLFacade {
 
 	// Bezero batek dibisak erosteko prozesua gauzatzen du.
 	@WebMethod
-	public void erosketaGauzatu(int id, Dibisa dibisa, int kop, double prezioa, String deskripzioa, String mota,String helbidea);
+	public void erosketaGauzatu(int id, Dibisa dibisa, int kop, double prezioa, String deskripzioa, String mota,String helbidea) throws Exception;
 
 	// Sukurtsala lortuko du datu basetik
 	@WebMethod
