@@ -17,22 +17,16 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Kontua implements Serializable {
+	private KontuaProduct kontuaProduct = new KontuaProduct();
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	
-
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id
 	@GeneratedValue
 	private Integer id;
-	// @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private ArrayList<Eragiketa> eragiketaList;
-	
 	private String kontuIzena;
 
 	private double diruKopuru;
@@ -51,10 +45,7 @@ public class Kontua implements Serializable {
 
 	// Trantzakzio bat gauzatzen denean gehitu egingo da eragiketaList-era
 	public void eragiketaGehitu(Eragiketa eragiketa) {
-		if (this.eragiketaList == null) {
-			eragiketaList = new ArrayList<Eragiketa>();
-		}
-		eragiketaList.add(eragiketa);
+		kontuaProduct.eragiketaGehitu(eragiketa);
 	}
 
 	// Geter eta setterrak
@@ -83,11 +74,11 @@ public class Kontua implements Serializable {
 	}
 
 	public ArrayList<Eragiketa> getEragiketaList() {
-		return this.eragiketaList;
+		return this.kontuaProduct.getEragiketaList();
 	}
 
 	public void setEragiketaList(ArrayList<Eragiketa> eragiketaLista) {
-		this.eragiketaList = eragiketaLista;
+		kontuaProduct.setEragiketaList(eragiketaLista);
 	}
 
 	@Override

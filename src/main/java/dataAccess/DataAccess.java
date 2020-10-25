@@ -2,7 +2,7 @@ package dataAccess;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.jws.WebMethod;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -203,6 +203,14 @@ public class DataAccess implements DataAccessInterface {
 	@Override
 	public Sukurtsala getSukurtsala(String helbidea) {
 		return db.find(Sukurtsala.class, helbidea);
+	}
+
+	@WebMethod
+	public int eragiketaKodLortu() {
+		open(false);
+		int luzeera = ergiketaKodLortu().size();
+		close();
+		return luzeera + 1;
 	}
 
 }

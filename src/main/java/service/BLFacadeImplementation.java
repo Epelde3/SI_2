@@ -45,21 +45,13 @@ public class BLFacadeImplementation implements BLFacade {
 
 	}
 
-	@WebMethod
-	public int eragiketaKodLortu() {
-		dbManager.open(false);
-		int luzeera = dbManager.ergiketaKodLortu().size();
-		dbManager.close();
-		return luzeera + 1;
-	}
-
 	@WebMethod // sukurtsaleko dibisak eguneratzen ditu. Eta bezeroari eragiketa gehitzen dio.
 	public void erosketaGauzatu(int id, Dibisa dibisa, int kop, double prezioa, String deskripzioa, String mota,
 			String helbidea) throws Exception {
 		if (mota.equals("Erosi")) {
 			dibisakEguneratu(dibisa, -kop, helbidea);
 			// Bezeroari eragiketa sortu
-			Eragiketa erag = new Eragiketa(mota, deskripzioa, eragiketaKodLortu());
+			Eragiketa erag = new Eragiketa(mota, deskripzioa, dbManager.eragiketaKodLortu());
 			dbManager.open(false);
 
 			dbManager.eragiketaGehitu(erag, id, prezioa);
@@ -67,7 +59,7 @@ public class BLFacadeImplementation implements BLFacade {
 		} else if (mota.equals("Salketa")) {
 			// dibisak gehitu
 			dibisakEguneratu(dibisa, kop, helbidea);
-			Eragiketa erag = new Eragiketa(mota, deskripzioa, eragiketaKodLortu());
+			Eragiketa erag = new Eragiketa(mota, deskripzioa, dbManager.eragiketaKodLortu());
 			DataAccess db = new DataAccess();
 
 			diruaGehitu(id, dibisa, kop);
