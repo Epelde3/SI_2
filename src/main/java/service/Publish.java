@@ -2,11 +2,14 @@ package service;
 
 import javax.xml.ws.Endpoint;
 
+import dataAccess.DataAccess;
+
 public class Publish {
 
 	public static void main(String[] args) {
-//		Endpoint.publish("http://0.0.0.0:9999/ws", new BLFacadeImplementation());
-//		System.out.println("Desplegatua izan da");
+		DataAccess db=new DataAccess(true);
+		Endpoint.publish("http://0.0.0.0:9999/ws", new BLFacadeImplementation(db));
+		System.out.println("Desplegatua izan da");
 	}		
 
 }

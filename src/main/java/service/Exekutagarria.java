@@ -1,19 +1,23 @@
 package service;
 
-import javax.xml.ws.Endpoint;
-
-import dataAccess.DataAccess;
+import factory.ServerStateFactory;
 import gui.*;
 
 public class Exekutagarria {
 
 	public static void main(String[] args) {
-		DataAccess dao=new DataAccess();
-		Endpoint.publish("http://0.0.0.0:9999/ws", new BLFacadeImplementation(dao));
-		System.out.println("Desplegatua izan da");
-		
-		Hasiera a=new Hasiera();
-		a.setVisible(true);
+		try {
+			BLFacade wsl;
+			boolean local=false;
+			ServerStateFactory factory=new ServerStateFactory();
+			wsl=factory.zerbLortu(local);
+			Hasiera a=new Hasiera();
+			a.setWsl(wsl);
+			a.setVisible(true);
+		} catch (Exception e1) {
+
+			e1.printStackTrace();
+		}
 
 	}
 

@@ -8,6 +8,8 @@ import javax.jws.WebService;
 import dataAccess.DataAccess;
 import dataAccess.DataAccessInterface;
 import domain.*;
+import iterator.ExtendedIterator;
+import iterator.SukurtsalIterator;
 
 @WebService(endpointInterface = "service.BLFacade")
 public class BLFacadeImplementation implements BLFacade {
@@ -87,6 +89,7 @@ public class BLFacadeImplementation implements BLFacade {
 
 	}
 
+	//Honen gainean aplikatu behar da iterator da.
 	@WebMethod
 	public List<Sukurtsala> getSukurtsalak() {
 		dbManager.open(false);
@@ -94,6 +97,14 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return a;
 
+	}
+	public ExtendedIterator getSukurtsalakIterator(){
+		
+		dbManager.open(false);
+		List<Sukurtsala> lista=dbManager.sukurtsalakLortu();
+		SukurtsalIterator iterator=new SukurtsalIterator(lista);
+		return iterator;
+		
 	}
 
 	@WebMethod

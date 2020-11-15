@@ -5,6 +5,7 @@ import java.net.URL;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import dataAccess.DataAccess;
 import service.*;
 
 public class BezeroZerb {
@@ -14,7 +15,9 @@ public class BezeroZerb {
          QName qname=new QName("http://service/","BLFacadeImplementationService");
          Service service=Service.create(url,qname);
          BLFacade wsl=service.getPort(BLFacade.class);
-         System.out.println(wsl.getBezero(0).toString());
+         System.err.println(wsl.getBezero(0).toString());
+         DataAccess da=new DataAccess(true);
+         wsl=new BLFacadeImplementation(da);
          
          
 		

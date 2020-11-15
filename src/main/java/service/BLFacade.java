@@ -6,6 +6,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import domain.*;
+import iterator.ExtendedIterator;
 
 @WebService
 public interface BLFacade {
@@ -28,6 +29,10 @@ public interface BLFacade {
 	// Sukurtsal guztien lista itzultzen du.
 	@WebMethod
 	public List<Sukurtsala> getSukurtsalak();
+	
+	//Sukurtsalen iteradorea itzultzen du.
+	@WebMethod
+	public ExtendedIterator getSukurtsalakIterator();
 
 	// Eragiketaren prezioa kalkulatzen du
 	@WebMethod
