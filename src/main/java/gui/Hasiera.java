@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+
+import org.graalvm.compiler.hotspot.nodes.DimensionsNode;
 
 import dataAccess.DataAccess;
 import dataAccess.DataAccessInterface;
@@ -160,7 +163,7 @@ public class Hasiera extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Table a=new Table(wsl);
-				
+				a.setPreferredSize(new Dimension(1380,1280));
 				
 				a.setVisible(true);
 			}

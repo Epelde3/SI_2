@@ -19,7 +19,7 @@ public class IteratorMain {
 			System.out.println(a.toString());
 			
 		}
-		
+		System.out.println("");
 		i.goFirst();
 		while(i.hasNext()) {
 			Sukurtsala a=i.next();

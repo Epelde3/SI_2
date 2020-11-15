@@ -25,7 +25,7 @@ public class Table extends JFrame implements ActionListener {
    public Table(BLFacade wsl) {
 	   this.wsl=wsl;
       
-      setBounds(10,10,400,300);
+      setBounds(500,500,400,300);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
       
@@ -39,7 +39,7 @@ public class Table extends JFrame implements ActionListener {
       table = new JTable(tableModel);
       table.setAutoCreateRowSorter(true);
       JScrollPane scrollPane = new JScrollPane(table);
-      scrollPane.setPreferredSize(new Dimension(380,280));
+      scrollPane.setPreferredSize(new Dimension(1380,1280));
       JPanel panel = new JPanel();
       panel.add(scrollPane);
       add(panel,BorderLayout.CENTER);
