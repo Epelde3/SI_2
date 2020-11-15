@@ -32,7 +32,7 @@ public class KutxaBeltzekoProbak {
 	@Test
 	public void test1() {
 		
-		Kontua kontua = new Kontua("Alex", 999, 24);
+		Kontua kontua = new Kontua("Alex", 999, 24,null);
 
 		Dibisa dibisa = new Dibisa("Libra Esterlinak", 0.25);
 		SukurtsalDibisa sukDibisa = new SukurtsalDibisa(dibisa, 5000, 0.15, "Libra Esterlinak");
@@ -62,7 +62,7 @@ public class KutxaBeltzekoProbak {
 
 	@Test
 	public void test2() {
-		Kontua kontua = new Kontua("Alex", 999, 24);
+		Kontua kontua = new Kontua("Alex", 999, 24,null);
 
 		Dibisa dibisa = new Dibisa("Libra Esterlinak", 0.25);
 		SukurtsalDibisa sukDibisa = new SukurtsalDibisa(dibisa, 5000, 0.15, "Libra Esterlinak");
@@ -91,7 +91,7 @@ public class KutxaBeltzekoProbak {
 
 	@Test
 	public void test3() {
-		Kontua kontua = new Kontua("Alex", 999, 24);
+		Kontua kontua = new Kontua("Alex", 999, 24,null);
 
 		Eragiketa erag = new Eragiketa("Erosi", "MockitoProba1", 100);
 		
@@ -107,7 +107,7 @@ public class KutxaBeltzekoProbak {
 
 	@Test
 	public void test4() {
-		Kontua kontua = new Kontua("Alex", 999, 24);
+		Kontua kontua = new Kontua("Alex", 999, 24,null);
 
 		Dibisa dibisa = new Dibisa("Libra Esterlinak", 0.25);
 		SukurtsalDibisa sukDibisa = new SukurtsalDibisa(dibisa, 5000, 0.15, "Libra Esterlinak");
@@ -127,7 +127,7 @@ public class KutxaBeltzekoProbak {
 
 	@Test
 	public void test5() {
-		Kontua kontua = new Kontua("Alex", 999, 24);
+		Kontua kontua = new Kontua("Alex", 999, 24,null);
 		try {
 			Dibisa dibisa = new Dibisa("Libra Esterlinak", 0.25);
 			Mockito.doReturn(kontua).when(dao).getBezeroa(Mockito.anyInt());

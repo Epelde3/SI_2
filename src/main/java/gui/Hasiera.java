@@ -154,6 +154,19 @@ public class Hasiera extends JFrame {
 		});
 		btnSukurtsalaAldatu.setBounds(216, 7, 149, 23);
 		contentPane.add(btnSukurtsalaAldatu);
+		
+		JButton btnNewButton = new JButton("12 id-a duenaren eragiketak ikusi");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Table a=new Table(wsl);
+				
+				
+				a.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(94, 132, 201, 23);
+		contentPane.add(btnNewButton);
 
 	}
 }

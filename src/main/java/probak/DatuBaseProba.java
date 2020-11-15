@@ -8,8 +8,10 @@ import dataAccess.DataAccessInterface;
 public class DatuBaseProba {
 	
 	public static void main(String[]args) {
-		DataAccessInterface db=new DataAccess();
-		db.initializeDB();		
+		DataAccess db=new DataAccess();
+		db.kontuaSartu();
+		System.out.println("asdf");
+		
 		
 	}
 	

@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
@@ -17,7 +18,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Kontua implements Serializable {
-	private KontuaProduct kontuaProduct = new KontuaProduct();
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	private EragiketaList eragiketaList;
 	/**
 	 * 
 	 */
@@ -32,11 +34,12 @@ public class Kontua implements Serializable {
 	private double diruKopuru;
 
 	// Eraikitzailea
-	public Kontua(String kontuIzena, float diruKopuru, Integer id) {
+	public Kontua(String kontuIzena, float diruKopuru, Integer id, EragiketaList kontuaProduct) {
 		super();
 		this.kontuIzena = kontuIzena;
 		this.diruKopuru = diruKopuru;
 		this.id = id;
+		this.eragiketaList = kontuaProduct;
 	}
 
 	public Kontua() {
@@ -45,7 +48,7 @@ public class Kontua implements Serializable {
 
 	// Trantzakzio bat gauzatzen denean gehitu egingo da eragiketaList-era
 	public void eragiketaGehitu(Eragiketa eragiketa) {
-		kontuaProduct.eragiketaGehitu(eragiketa);
+		this.eragiketaList.eragiketaGehitu(eragiketa);
 	}
 
 	// Geter eta setterrak
@@ -74,11 +77,11 @@ public class Kontua implements Serializable {
 	}
 
 	public ArrayList<Eragiketa> getEragiketaList() {
-		return this.kontuaProduct.getEragiketaList();
+		return this.eragiketaList.getEragiketaList();
 	}
 
 	public void setEragiketaList(ArrayList<Eragiketa> eragiketaLista) {
-		kontuaProduct.setEragiketaList(eragiketaLista);
+		eragiketaList.setEragiketaList(eragiketaLista);
 	}
 
 	@Override

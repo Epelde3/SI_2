@@ -8,7 +8,7 @@ public class Exekutagarria {
 	public static void main(String[] args) {
 		try {
 			BLFacade wsl;
-			boolean local=false;
+			boolean local=true;
 			ServerStateFactory factory=new ServerStateFactory();
 			wsl=factory.zerbLortu(local);
 			Hasiera a=new Hasiera();

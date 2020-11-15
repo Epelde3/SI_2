@@ -149,11 +149,11 @@ public class DataAccess implements DataAccessInterface {
 	 */
 	@Override
 	public void proba() {
-		db.getTransaction().begin();
-		Kontua bezero=new Kontua("Melvin", 10 , 0);
-		db.persist(bezero);
-		db.getTransaction().commit();
-		db.close();
+//		db.getTransaction().begin();
+//		Kontua bezero=new Kontua("Melvin", 10 , 0);
+//		db.persist(bezero);
+//		db.getTransaction().commit();
+//		db.close();
 	}
 	
 	//DAtuak sartzeko
@@ -211,6 +211,27 @@ public class DataAccess implements DataAccessInterface {
 		int luzeera = ergiketaKodLortu().size();
 		close();
 		return luzeera + 1;
+	}
+	
+	public void kontuaSartu() {
+		open(false);
+		db.getTransaction().begin();
+		EragiketaList list=new EragiketaList();
+		Eragiketa e1=new Eragiketa("Erosi", "Gauzatu den eragiketa mota: ErosiBezeroak 45 Libra dibisa erosi ditu. Prezioa: 44.28", 201);
+		Eragiketa e2=new Eragiketa("Erosi", "Gauzatu den eragiketa mota: ErosiBezeroak 45 Dolar dibisa erosi ditu. Prezioa: 71.05263157894737", 202);
+		Eragiketa e3=new Eragiketa("Salketa", "Gauzatu den eragiketa mota: Salketa Bezroak456 Libra saldu dizkio sukurtsalari", 203);
+		list.eragiketaGehitu(e1);
+		list.eragiketaGehitu(e2);
+		list.eragiketaGehitu(e3);
+				
+		Kontua test=new Kontua("Melvin", 500000, 0, list);
+//		test.eragiketaGehitu(e1);
+//		test.eragiketaGehitu(e2);
+//		test.eragiketaGehitu(e3);
+		
+		db.persist(test);
+		
+		db.getTransaction().commit();
 	}
 
 }
